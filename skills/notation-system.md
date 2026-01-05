@@ -20,7 +20,7 @@ This is radical simplification — and it works. It's the **Assembly language of
 ### Linear (Chromatic Row)
 
 ```
-0  1  2  3  4  5  6  7  8  9  10 11
+1  2  3  4  5  6  7  8  9  10 11 12
 C  C# D  D# E  F  F# G  G# A  A# B
 ```
 
@@ -31,18 +31,19 @@ C  C# D  D# E  F  F# G  G# A  A# B
 ### Circular (Clock Face)
 
 ```
-        0 (C)
-    11      1
-  10          2
-   9          3
-    8       4
-        6
-      7   5
+        1 (C)
+    12      2
+  11          3
+  10          4
+    9       5
+      8 7 6
+         
 ```
 
 - Reveals cyclic nature of pitch
 - Shows interval relationships geometrically
 - Scales become "shapes" on the circle
+- "C" note / notes is just an example, the interval structure is key
 
 ## Scales as Geometry
 
@@ -66,15 +67,76 @@ Traditional terminology conflates these. We separate them:
 - The *root marker* (if any) shows the mode
 - Without a root marker, it's just "the scale" — mode is undefined
 
+### Scale Size: Maximum 7 Notes
+
+**Hard limit: scales have at most 7 notes.**
+
+| Notes | Validity |
+|-------|----------|
+| 2-4 | Allowed (but rarely called "scales") |
+| 5-6 | Common (pentatonic, hexatonic) |
+| 7 | Maximum — **"complete scale"** |
+| 8+ | **Not allowed** |
+
+**Why 7?**
+- Fits the urinal principle: 7 notes in 12 semitones achieves near-optimal distribution
+- More than 7 = intervals become too small, loses clarity
+- Matches the degree system (1-7)
+
+### Complete Scales (7 Notes)
+
+A 7-note scale is the **"final form"** of the urinal principle — maximum notes while maintaining good distribution.
+
+**Interval constraints for 7-note scales:**
+
+| Interval | Semitones | Allowed? |
+|----------|-----------|----------|
+| Minor 2nd | 1 | ✓ |
+| Major 2nd | 2 | ✓ |
+| Minor 3rd | 3 | ✓ |
+| Major 3rd | 4 | ✗ |
+| Larger | 5+ | ✗ |
+
+**Why max 3 semitones?**
+- 7 intervals must sum to 12
+- Average = 12/7 ≈ 1.7 semitones
+- A 4-semitone gap forces remaining intervals to cluster (breaks urinal principle)
+- Minor 3rd (3) is acceptable — allows scales like Arabic maqam
+
+**Examples of valid 7-note scales:**
+- Diatonic: 2-2-1-2-2-2-1 ✓
+- Harmonic minor: 2-1-2-2-1-3-1 ✓ (has minor 3rd)
+- Arabic (e.g., Hijaz): contains minor 3rds ✓
+
+### Smaller Scales (5-6 Notes)
+
+For scales with fewer notes, larger intervals are natural and expected:
+
+| Scale Size | Avg Interval | Typical Gaps |
+|------------|--------------|--------------|
+| 5 notes | 12/5 = 2.4 | 2, 3, even 4 |
+| 6 notes | 12/6 = 2.0 | 1, 2, 3 |
+
+**Pentatonic example:** 2-2-3-2-3 — minor 3rds are structural, not exceptions.
+
+**Key insight:** The urinal principle scales with note count. Fewer notes = bigger gaps required for optimal distribution.
+
+### Why This Matters
+
+8+ note scales violate the principle — intervals forced below useful thresholds. If you need 8+ notes, you're likely:
+- Mixing two scales/modes (analyze separately)
+- Using chromatic passing tones (not structural scale notes)
+
 ### Scale Examples
 
 | Scale Name | Notes | # of Modes |
 |------------|-------|------------|
-| Chromatic | all 12 | 1 (symmetric) |
 | Whole tone | 0, 2, 4, 6, 8, 10 | 1 (symmetric) |
 | Diatonic | 0, 2, 4, 5, 7, 9, 11 | 7 |
 | Pentatonic | 0, 2, 4, 7, 9 | 5 |
 | Harmonic minor | 0, 2, 3, 5, 7, 8, 11 | 7 |
+
+*Note: Chromatic (all 12) is not a "scale" in this system — it's the full pitch space.*
 
 The *shape* on the circle reveals the scale's character:
 - Symmetric shapes = fewer unique modes
@@ -300,11 +362,6 @@ The diatonic scale is **mathematically optimal spacing**.
 ### Symmetry in Exotic Scales
 
 Observation: Exotic/non-diatonic scales sound more pleasing when their intervals follow symmetric patterns.
-
-Examples of symmetric scales:
-- Whole tone: 2-2-2-2-2-2 (perfectly symmetric)
-- Diminished: 2-1-2-1-2-1-2-1 (alternating)
-- Augmented: 3-1-3-1-3-1 (alternating)
 
 ### The Implication
 
