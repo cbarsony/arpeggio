@@ -27,6 +27,7 @@ Some unique tools (like Twelve-style input) may be introduced later, but they're
 | [product-intent.md](product-intent.md) | Vision: AI assists MIDI composition like VS Code AI assists coding |
 | [notation-system.md](notation-system.md) | **The foundational theory** — 12-note system, scales, chords, degrees |
 | [musical-philosophy.md](musical-philosophy.md) | Compositional approach — uniqueness first, notes over production |
+| [ai-integration.md](ai-integration.md) | How AI uses the notation system as IR; I/O format |
 
 ## Personas
 
