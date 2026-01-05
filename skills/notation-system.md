@@ -196,10 +196,11 @@ For tetrads (4-note chords), the 4th note must be exactly ONE of:
 - 6th (add6 / add13)
 - 7th (seventh chords)
 
-**Forbidden:**
-- {1, 3, 5, 2, 7} — two extensions
-- {1, 2, 4, 5} — two extensions
-- Any chord with 2+ degrees outside {1, 3, 5}
+**Forbidden tetrads:**
+- {1, 3, 5, 2, 7} — two extensions (also 5 notes)
+- {1, 2, 4, 5} — two extensions (2 AND 4)
+
+**Rule:** A tetrad can have at most 1 degree from {2, 4, 6, 7}.
 
 **Reasoning:** Multiple extensions make the chord's "intention" unprocessable by the listener. One color at a time.
 
