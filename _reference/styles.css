@@ -1,0 +1,422 @@
+/* ===== CSS Variables ===== */
+:root {
+    /* Colors */
+    --bg-dark: #1a1a2e;
+    --bg-medium: #16213e;
+    --bg-light: #0f3460;
+    --accent: #e94560;
+    --accent-hover: #ff6b6b;
+    --text-primary: #eee;
+    --text-secondary: #aaa;
+    
+    /* Grid colors */
+    --grid-line: rgba(255, 255, 255, 0.08);
+    --grid-line-beat: rgba(255, 255, 255, 0.15);
+    --grid-line-bar: rgba(255, 255, 255, 0.3);
+    --row-white: rgba(255, 255, 255, 0.03);
+    --row-black: rgba(0, 0, 0, 0.15);
+    
+    /* Note colors */
+    --note-color: #4fc3f7;
+    --note-border: #29b6f6;
+    --note-selected: #ffeb3b;
+    --note-selected-border: #ffc107;
+    
+    /* Piano */
+    --piano-white: #f5f5f5;
+    --piano-black: #333;
+    
+    /* Layout dimensions */
+    --toolbar-height: 50px;
+    --piano-keys-width: 80px;
+    --timeline-height: 30px;
+    --note-height: 20px;
+    --beat-width: 40px;
+    --beats-per-bar: 4;
+    --total-bars: 16;
+}
+
+/* ===== Reset & Base ===== */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* ===== Toolbar ===== */
+.toolbar {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 0 16px;
+    height: var(--toolbar-height);
+    background: var(--bg-medium);
+    border-bottom: 1px solid var(--grid-line-bar);
+    flex-shrink: 0;
+}
+
+.toolbar-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.app-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.transport-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.transport-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 4px;
+    background: var(--bg-light);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.transport-btn:hover {
+    background: var(--accent);
+}
+
+.transport-btn:active {
+    transform: scale(0.95);
+}
+
+.transport-btn.playing {
+    background: var(--accent);
+}
+
+.time-display {
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    color: var(--text-secondary);
+    min-width: 80px;
+}
+
+.toolbar-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.toolbar-input {
+    width: 60px;
+    padding: 4px 8px;
+    border: 1px solid var(--grid-line-bar);
+    border-radius: 4px;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    font-size: 13px;
+}
+
+.toolbar-select {
+    padding: 4px 8px;
+    border: 1px solid var(--grid-line-bar);
+    border-radius: 4px;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    font-size: 13px;
+}
+
+.action-btn {
+    padding: 6px 12px;
+    border: 1px solid var(--grid-line-bar);
+    border-radius: 4px;
+    background: var(--bg-light);
+    color: var(--text-primary);
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.action-btn:hover {
+    background: var(--accent);
+}
+
+/* ===== Editor Container ===== */
+.editor-container {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+}
+
+.editor-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* ===== Timeline Row ===== */
+.timeline-row {
+    display: flex;
+    height: var(--timeline-height);
+    background: var(--bg-medium);
+    border-bottom: 1px solid var(--grid-line-bar);
+    flex-shrink: 0;
+}
+
+.piano-keys-spacer {
+    width: var(--piano-keys-width);
+    background: var(--bg-medium);
+    border-right: 1px solid var(--grid-line-bar);
+    flex-shrink: 0;
+}
+
+.timeline-scroll-wrapper {
+    flex: 1;
+    overflow: hidden;
+}
+
+.timeline {
+    display: flex;
+    height: 100%;
+    /* Width will be set by JS based on total beats */
+}
+
+.timeline-bar {
+    width: calc(var(--beat-width) * var(--beats-per-bar));
+    height: 100%;
+    border-left: 1px solid var(--grid-line-bar);
+    display: flex;
+    align-items: flex-end;
+    padding: 0 4px 4px 4px;
+    font-size: 11px;
+    color: var(--text-primary);
+    flex-shrink: 0;
+}
+
+/* ===== Piano Roll Row ===== */
+.piano-roll-row {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+}
+
+.piano-keys {
+    width: var(--piano-keys-width);
+    background: var(--bg-medium);
+    border-right: 1px solid var(--grid-line-bar);
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-shrink: 0;
+}
+
+.piano-keys::-webkit-scrollbar {
+    display: none;
+}
+
+.piano-key {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 8px;
+    height: var(--note-height);
+    font-size: 10px;
+    font-weight: 500;
+    border-bottom: 1px solid var(--grid-line);
+    cursor: pointer;
+    transition: background 0.1s;
+    user-select: none;
+}
+
+.piano-key.white {
+    background: var(--piano-white);
+    color: #333;
+}
+
+.piano-key.black {
+    background: var(--piano-black);
+    color: #fff;
+}
+
+.piano-key:hover {
+    background: var(--accent) !important;
+    color: #fff;
+}
+
+.piano-key.active {
+    background: var(--accent) !important;
+    color: #fff;
+}
+
+/* ===== Piano Roll Scroll Container ===== */
+.piano-roll-scroll {
+    flex: 1;
+    overflow: auto;
+    position: relative;
+}
+
+.piano-roll-scroll::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+.piano-roll-scroll::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+
+.piano-roll-scroll::-webkit-scrollbar-thumb {
+    background: var(--bg-light);
+    border-radius: 6px;
+}
+
+.piano-roll-scroll::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+
+.piano-roll-scroll::-webkit-scrollbar-corner {
+    background: var(--bg-dark);
+}
+
+/* ===== Piano Roll Grid ===== */
+.piano-roll {
+    position: relative;
+    /* Width and height set by JS */
+}
+
+.grid-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* Grid rows - generated by JS as elements for clarity */
+.grid-row {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: var(--note-height);
+    border-bottom: 1px solid var(--grid-line);
+}
+
+.grid-row.white-key {
+    background: var(--row-white);
+}
+
+.grid-row.black-key {
+    background: var(--row-black);
+}
+
+/* Grid columns (beat lines) */
+.grid-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    pointer-events: none;
+}
+
+.grid-line.beat {
+    background: var(--grid-line-beat);
+}
+
+.grid-line.bar {
+    background: var(--grid-line-bar);
+}
+
+/* ===== Notes Container ===== */
+.notes-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* ===== Note Element ===== */
+.midi-note {
+    position: absolute;
+    height: calc(var(--note-height) - 2px);
+    background: var(--note-color);
+    border: 1px solid var(--note-border);
+    border-radius: 3px;
+    cursor: move;
+    font-size: 9px;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    transition: background 0.1s, border-color 0.1s;
+    padding: 0;
+    font-family: inherit;
+    overflow: hidden;
+}
+
+.midi-note:hover {
+    background: #81d4fa;
+}
+
+.midi-note.selected {
+    background: var(--note-selected);
+    border: 2px solid var(--note-selected-border);
+}
+
+.midi-note:focus {
+    outline: 2px solid #fff;
+    outline-offset: 1px;
+}
+
+/* ===== Playhead ===== */
+.playhead {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: var(--accent);
+    pointer-events: none;
+    z-index: 100;
+    box-shadow: 0 0 6px var(--accent);
+    transform: translateX(0);
+    will-change: transform;
+}
+
+/* ===== Utility ===== */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}

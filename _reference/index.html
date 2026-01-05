@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIDI Editor - No, I'm not this!</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <header class="toolbar" role="toolbar" aria-label="Editor controls">
+            <div class="toolbar-section">
+                <h1 class="app-title">MIDI Editor</h1>
+            </div>
+            <div class="toolbar-section transport-controls">
+                <button id="btn-play" class="transport-btn" title="Play" aria-label="Play">
+                    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                        <polygon points="5,3 19,12 5,21" fill="currentColor"/>
+                    </svg>
+                </button>
+                <button id="btn-stop" class="transport-btn" title="Stop" aria-label="Stop">
+                    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                        <rect x="4" y="4" width="16" height="16" fill="currentColor"/>
+                    </svg>
+                </button>
+                <span id="time-display" class="time-display" aria-live="polite" aria-label="Playback time">0:00.000</span>
+            </div>
+            <div class="toolbar-section">
+                <label class="toolbar-label">
+                    BPM:
+                    <input type="number" id="tempo-input" value="120" min="20" max="300" class="toolbar-input" aria-label="Tempo in BPM">
+                </label>
+                <label class="toolbar-label">
+                    Snap:
+                    <select id="snap-select" class="toolbar-select" aria-label="Grid snap value">
+                        <option value="0.25">1/16</option>
+                        <option value="0.5">1/8</option>
+                        <option value="1" selected>1/4</option>
+                        <option value="2">1/2</option>
+                        <option value="4">1 bar</option>
+                    </select>
+                </label>
+            </div>
+            <div class="toolbar-section">
+                <button id="btn-clear" class="action-btn" title="Clear All" aria-label="Clear all notes">Clear</button>
+            </div>
+        </header>
+        
+        <main class="editor-container">
+            <div class="editor-wrapper">
+                <!-- Timeline (top) -->
+                <div class="timeline-row">
+                    <div class="piano-keys-spacer"></div>
+                    <div class="timeline-scroll-wrapper">
+                        <div class="timeline" id="timeline" role="list" aria-label="Timeline bars"></div>
+                    </div>
+                </div>
+                
+                <!-- Piano Roll Area -->
+                <div class="piano-roll-row">
+                    <div class="piano-keys" id="piano-keys" role="list" aria-label="Piano keyboard"></div>
+                    <div class="piano-roll-scroll" id="piano-roll-scroll">
+                        <div class="piano-roll" id="piano-roll" role="application" aria-label="Note editor grid">
+                            <div class="grid-background" id="grid-background"></div>
+                            <div class="notes-container" id="notes-container"></div>
+                            <div id="playhead" class="playhead" aria-hidden="true"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script type="module" src="src/main.js"></script>
+</body>
+</html>
