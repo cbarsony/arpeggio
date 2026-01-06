@@ -1,5 +1,13 @@
 # Product Intent
 
+> **Tagline:** *AI that replies in music, not words.*
+
+> **Value Proposition:** A MIDI editor where you communicate with AI in both notes and words — draw what you mean, say what you want, get music and explanation back.
+
+> **Elevator Pitch:** Talking to AI about music is slow — you have to translate notes to text and back. Arpeggio is a MIDI editor where you draw notes, ask questions, and AI responds with playable MIDI.
+
+---
+
 ## Vision
 
 **A MIDI editor where AI assists composition the way VS Code's AI agent assists coding.**
@@ -8,7 +16,48 @@ The interaction model is the key insight: just as AI in VS Code understands code
 
 ## Problem Statement
 
-*To be defined — pending musical philosophy context*
+**Talking to AI about music is painfully slow.**
+
+The current workflow:
+1. Compose notes in a DAW or MIDI editor
+2. Manually translate to text: "I have a C major chord, then F major, then G..."
+3. Ask AI a question
+4. AI responds with text: "Try adding a Dm7 before the G..."
+5. Manually translate back to notes
+
+This text-as-intermediary approach is sluggish, error-prone, and breaks creative flow. Music is not text — why force it through a text bottleneck?
+
+**The solution: AI that speaks MIDI.**
+
+Draw notes → Ask a question → AI responds with playable MIDI.
+
+No translation. No friction. The conversation happens in the native language of composition.
+
+## What This Product Is (and Isn't)
+
+### IS: A compositional sketchpad
+
+- **Output = MIDI only** — a musical blueprint, not a finished song
+- **Basic synths for preview** — hear ideas, but sound design is out of scope
+- **Planning and discovery** — explore harmony, melody, arrangement ideas
+- **AI as collaborator** — ask for variations, alternatives, stylistic suggestions
+
+### IS NOT: A production tool
+
+- Not for mixing, mastering, or final sound
+- Not for users who need polished audio to evaluate ideas
+- Not competing with DAWs — complementing them
+
+**Analogy:** This is the architectural sketch, not the finished building.
+
+## Example Workflows
+
+| You draw... | You ask... | AI responds with... |
+|-------------|------------|---------------------|
+| A chord progression | "What bass line would fit in the style of Bach?" | A walking bass MIDI pattern |
+| A melodic phrase | "Write a similar phrase, but in a minor key" | Transposed/transformed MIDI |
+| A verse section | "Suggest a contrasting chorus" | New MIDI with harmonic contrast |
+| An ambiguous voicing | "What key is this? What are my options?" | Analysis + alternative MIDI sketches |
 
 ## Core Analogy
 
@@ -30,7 +79,7 @@ The interaction model is the key insight: just as AI in VS Code understands code
 
 ### What the AI Does (Invisible)
 
-1. "Sees" the MIDI visually (like seeing code)
+1. "Sees" the MIDI directly (like seeing code in an editor)
 2. Analyzes using the **notation system** as internal representation:
    - Identifies scale, mode, degrees
    - Detects chord progressions, voice leading
@@ -61,8 +110,27 @@ User (visual)  →  AI (internal analysis)  →  User (audible)
 
 ## Target User
 
-A classically-trained musician who composes metal music using computers, valuing sound and craftsmanship over genre conventions.
+A composer who:
+- Thinks in notes, not production
+- Can "hear through" basic synths to imagine the final sound
+- Values musical ideas over sonic polish
+- Wants AI as a knowledgeable collaborator, not a magic button
+
+## Target Outcomes
+
+- **90% reduction in idea-to-feedback time**: From ~5 min (type → translate → paste) to ~30s (draw → ask → hear)
+- **Zero translation errors**: AI sees MIDI directly, eliminating misinterpretation from text descriptions
+- **3x more ideas captured per session**: Lower friction = more exploration before self-editing kicks in
+
+## Success Metrics / KPIs
+
+| Metric | How Measured | Target |
+|--------|--------------|--------|
+| Time-to-playable-response | From user submit to audio preview | < 5 seconds |
+| AI response acceptance rate | User keeps/modifies/discards suggestion | > 60% keep or modify |
+| Session idea density | MIDI regions created per hour | 2x baseline |
+| Export rate | Sessions ending in MIDI export | > 40% |
 
 ---
 
-*Next: Musical philosophy — the unique mindset that will shape how AI understands and assists.*
+*The product closes the loop: music in, music out. Text is optional context, not the medium.*
